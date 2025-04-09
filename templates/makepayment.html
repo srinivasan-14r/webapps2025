@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make a Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .payment-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn,
+        .home-btn {
+            width: 100%;
+            padding: 10px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .home-btn {
+            background: #28a745;
+            color: white;
+            margin-top: 15px;
+        }
+        .home-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Make a Payment</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="recipient">Recipient Username</label>
+                <input type="text" name="recipient" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" name="amount" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="currency">Currency</label>
+                <select name="currency" required>
+                    <option value="GBP">£ GBP</option>
+                    <option value="USD">$ USD</option>
+                    <option value="EUR">€ EUR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="note">Note (optional)</label>
+                <input type="text" name="note">
+            </div>
+            <button type="submit" class="btn">Send Payment</button>
+        </form>
+
+        <a href="{% url 'home' %}" class="home-btn">Back to Home</a>
+    </div>
+</body>
+</html>

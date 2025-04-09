@@ -8,5 +8,5 @@ urlpatterns = [
     path('webapps2025/', include('register.urls')),  # Clean & modular
     path('webapps2025/register/', register_view, name='register'),
     path('home/', home_view, name='home'),
-
+    path('payapp/', include('payapp.urls')),
 ]
