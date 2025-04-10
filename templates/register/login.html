@@ -107,6 +107,26 @@
         .register-link a:hover {
             text-decoration: underline;
         }
+
+        .admin-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .admin-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #6c757d;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            background-color: lightseagreen;
+        }
     </style>
 </head>
 <body>
@@ -138,7 +158,13 @@
     <div class="register-link">
         <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
     </div>
+
+    <div class="admin-link">
+        <a href="{% url 'admin_login' %}" class="admin-btn">Admin Login</a>
+    </div>
 </div>
+
+
 
 </body>
 </html>

@@ -1,10 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f9ff;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        /* Header styling for logout button placement */
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f8ff;
+        }
+
+        tr:hover {
+            background-color: #e6f2ff;
+        }
+
+        @media (max-width: 768px) {
+            table, th, td {
+                font-size: 14px;
+            }
+
+            h2, h3 {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-$END$
+    <!-- Header with Logout Button -->
+    <div class="header">
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+
+    <h2>Admin Dashboard</h2>
+
+    <h3>All Users</h3>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date Joined</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.date_joined }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>All Transactions</h3>
+    <table>
+        <tr>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t.sender.username }}</td>
+            <td>{{ t.receiver }}</td>
+            <td>£{{ t.amount }}</td>
+            <td>{{ t.date_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
